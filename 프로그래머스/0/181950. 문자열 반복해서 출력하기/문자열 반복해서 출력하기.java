@@ -5,12 +5,13 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         int n = sc.nextInt();
-        String result = "";
+        String result = str.repeat(n);
 
-        
-        for (int i = 0; i < n; i++) {
-            result += str;
-        }
         System.out.println(result);
+        
+//         for (int i = 0; i < n; i++) {
+//             result += str;
+//         }
+//         System.out.println(result);
     }
 }

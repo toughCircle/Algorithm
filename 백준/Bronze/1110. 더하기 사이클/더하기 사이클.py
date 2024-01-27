@@ -1,25 +1,27 @@
 import sys
+input = sys.stdin.readline
 
-def plus(n1, n2, N):
-    count = 0
-    original = n1 + n2
+N = input()
 
-    while True:
-        sum_value = int(n1) + int(n2)
-        n1 = n2
-        n2 = str(sum_value)[-1]
-        count += 1
+if int(N) < 10:
+    new_N = "0"+N
+else:
+    new_N = N
 
-        if n1 + n2 == original:
-            break
+count = 0
 
-    return count
+while True:
+    n1 = new_N[1]
+    plusN = int(new_N[0]) + int(new_N[1])
+    n2 = str(plusN)[-1]
+    n3 = n1 + n2
+    count+=1
 
-N = sys.stdin.readline().strip()
+    if int(n3) == int(N):
+        break
+        
+    else:
+        new_N = n3
 
-if len(N) == 1:
-    N = "0" + N
+print(count)
 
-n1, n2 = N[0], N[1]
-
-print(plus(n1, n2, N))

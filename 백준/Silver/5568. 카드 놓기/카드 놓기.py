@@ -1,3 +1,5 @@
+from itertools import permutations
+
 n = int(input())
 k = int(input())
 
@@ -6,27 +8,11 @@ numbers = []
 for i in range(n):
     numbers.append(input())
 
-def create_permutations(arr, k):
-    if k == 0:
-        return [[]]
+def unique_permutations(elements, length):
+    seen = set()
+    for p in permutations(elements, length):
+        serialized = ''.join(p)
+        seen.add(serialized)
+    return len(seen)
 
-    permutations = []
-    for i in range(len(arr)):
-        m = arr[i]
-        new_arr = arr[:i] + arr[i+1:]
-
-        for p in create_permutations(new_arr, k-1):
-            permutations.append([m] + p)
-
-    return permutations
-
-def count_number(numbers, k):
-    new_numbers = set()
-    for com in create_permutations(numbers, k):
-        n = ''.join(com)
-        new_numbers.add(n)
-    return len(new_numbers)
-
-
-result = count_number(numbers, k)
-print(result)
+print(unique_permutations(numbers, k))

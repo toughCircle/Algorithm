@@ -9,13 +9,11 @@ coin.reverse()
 
 count = 0
 
-while M != 0:
-    for i in coin:
-        if i <= M:
-            count += M // i
-            M = M % i
-        if M == 0:
-            break
-
+for i in coin:
+    if i <= M:
+        count += M // i
+        M = M % i
+    if M == 0:
+        break
 
 print(count)

@@ -23,6 +23,7 @@ def solution(today, terms, privacies):
                 p_d[1] = 12
             else:
                 p_d[1] = p_d[1] % 12
+        
         # 오늘 날짜와 비교
         if p_d[0] < d[0]:
             answer.append(i+1)

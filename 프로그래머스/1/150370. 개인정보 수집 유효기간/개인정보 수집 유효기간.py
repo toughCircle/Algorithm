@@ -23,15 +23,6 @@ def solution(today, terms, privacies):
                 p_d[1] = 12
             else:
                 p_d[1] = p_d[1] % 12
-        # n개월 후 -1일
-        # p_d[2] -= 1
-        # if p_d[2] == 0:
-        #     p_d[1] -= 1
-        #     p_d[2] = 28 - p_d[2]
-        #     if p_d[1] == 0:
-        #         p_d[0] -= 1
-        #         p_d[1] = 12
-        
         # 오늘 날짜와 비교
         if p_d[0] < d[0]:
             answer.append(i+1)

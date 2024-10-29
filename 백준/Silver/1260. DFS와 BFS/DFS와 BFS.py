@@ -1,39 +1,50 @@
 import sys
+from collections import defaultdict, deque
 input = sys.stdin.readline
 
-N, M, V = map(int, input().split())
+# 정점 개수, 간선 개수, 탐색 시작 노드
+n, m, v = map(int, input().split())
 
-graph = {i: [] for i in range(1, N + 1)}
+# 그래프 입력을 위한 맵
+graph = defaultdict(list)
 
-for _ in range(M):
+for _ in range(m):
     i, j = map(int, input().split())
     graph[i].append(j)
     graph[j].append(i)
-    
+
+    # 그래프 정렬
     graph[i].sort()
     graph[j].sort()
 
-from collections import deque
+def dfs(start): # 깊이
+    visited = [] # 방문한 노드
+    stack = [start] # 방문가능 노드
 
-visited = []
+    while stack:
+        node = stack.pop()
 
-def dfs(cur_v):
-    visited.append(cur_v)
-    for v in graph[cur_v]:
-        if v not in visited:
-            dfs(v)
+        if node not in visited:
+            visited.append(node) # 현재 노드 방문 처리
+
+            for i in range(len(graph[node]) - 1, -1, -1):
+                stack.append(graph[node][i]) # 연결된 노드 리스트 추가
     return visited
 
-def bfs(start_v):
-    visited = [start_v]
-    queue = deque([start_v])
+def bfs(start): # 너비
+    visited = [] # 방문한 노드
+    queue = deque([start]) # 방문 가능 노드
+    visited.append(start)
+
     while queue:
-        cur_v = queue.popleft()
-        for v in graph[cur_v]:
-            if v not in visited:
-                visited.append(v)
-                queue.append(v)
+        node = queue.popleft()
+
+        # 현재 노드의 연결된 모든 노드 방문
+        for i in sorted(graph[node]):
+            if i not in visited:
+                visited.append(i)
+                queue.append(i)
     return visited
 
-print(*dfs(V))
-print(*bfs(V))
+print(*dfs(v))
+print(*bfs(v))
